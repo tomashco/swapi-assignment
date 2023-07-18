@@ -1,11 +1,10 @@
 import UserCard from "../components/UserCard"
 
-function UserPage(props) {
+function UserPage() {
 
-console.log(props)
   return (
     <>
-    <h1>Look the props</h1>
+    <h1>User Page</h1>
     <UserCard pathName={window.location.pathname}/>
     </>
   )

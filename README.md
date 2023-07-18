@@ -14,5 +14,6 @@ if you want to see a live example, just head to: [https://tomashco.github.io/swa
 ## Features
 
 ## Implementation notes
-- creation of a custom hook useAxios to integrate simple state management for axios calls
+- creation of a custom hook useAxios to integrate simple state management for axios calls;
+- addition of a router system that allows to move between pages;
 
