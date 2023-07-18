@@ -12,7 +12,7 @@ export default function useAxios(endpoint){
         await api.get(endpoint)
           .then(res => {
             const data = res.data;
-            setData(data.results);
+            setData(data);
             setIsLoading(false)
           }).catch(err => {
             setError(err.code)
