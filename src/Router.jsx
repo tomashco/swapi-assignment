@@ -15,6 +15,12 @@ const indexRoute = new Route({
   component: Index,
 })
 
+const prodRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/swapi-assignment',
+  component: Index,
+})
+
 const peopleRoute = new Route({
   getParentRoute: () => rootRoute,
   path: 'api/people',
@@ -39,7 +45,7 @@ export const userRoute = new Route({
   component: UserPage
 })
 
-const routeTree = rootRoute.addChildren([indexRoute, peopleRoute, userRoute,starshipsRoute,starshipRoute])
+const routeTree = rootRoute.addChildren([indexRoute, prodRoute, peopleRoute, userRoute,starshipsRoute,starshipRoute])
 
 export const router = new Router({ routeTree })
 
