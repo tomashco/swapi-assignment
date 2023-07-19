@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/router';
 import useAxios from '../api/useAxios';
 import {getUrl} from '../api'
-import { Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Button, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import TableRowsLoader from './TableRowsLoader'; 
 import { useEffect, useState } from 'react';
 import { limit } from '../utilities/utils';
@@ -19,7 +19,10 @@ export default function GenericList ({baseUrl}) {
 
   if (isLoading) return <TableRowsLoader />
   if(error) return <div>{error}</div>
-
+  if (data.length === 0) return (<div>
+    No data to display &nbsp; 
+    <Button variant="contained" onClick={()=> setUrl(window.location.pathname)}>Reset search</Button></div>)
+  
   const count=Math.floor(rawData?.count/10)
 
   const handleChange = (_evt, value) => {
