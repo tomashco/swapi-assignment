@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-bg{
+  background-image: url('../public/background.jpg');
+  background-position: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -3,18 +3,21 @@ import useAxios from '../api/useAxios';
 import {getUrl} from '../api'
 import { Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import TableRowsLoader from './TableRowsLoader'; 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { limit } from '../utilities/utils';
+import PropTypes from 'prop-types'
 
-export default function GenericList () {
+export default function GenericList ({baseUrl}) {
   const [page, setPage] = useState(1)
-  const baseUrl = window.location.pathname
   const [url, setUrl] = useState(baseUrl)
   const [rawData, isLoading, error] = useAxios(url)
   const data = rawData?.results
 
+  useEffect(() => {
+    setUrl(baseUrl)
+  },[baseUrl])
+
   if (isLoading) return <TableRowsLoader />
-  
   if(error) return <div>{error}</div>
 
   const count=Math.floor(rawData?.count/10)
@@ -27,7 +30,7 @@ export default function GenericList () {
 
   return <>
   <TableContainer
- component={Paper}>
+    component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -43,7 +46,7 @@ export default function GenericList () {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               {(Object.keys(row)).map((el, index) =>
-            typeof row[el] === "string"
+                  typeof row[el] === "string"
                   && (index === 0 ?
                   <TableCell key={el} align="right"><Link to={getUrl(row.url)} >{limit(row[el], 50)}</Link></TableCell>
                   : <TableCell key={el} align="right">{limit(row[el], 50)}</TableCell>)
@@ -58,4 +61,8 @@ export default function GenericList () {
       <Pagination page={page} count={count} onChange={handleChange} />
     </Stack>
   </>
+}
+
+GenericList.propTypes = {
+  baseUrl: PropTypes.string
 }

@@ -1,7 +1,7 @@
 import { RootRoute, Route, Router } from "@tanstack/router"
-import Index from "./pages/IndexPage"
 import SingleViewPage from "./pages/SingleViewPage"
 import Layout from "./pages/Layout"
+import InitialPage from "./pages/InitialPage"
 import TablePage from "./pages/TablePage"
 
 const rootRoute = new RootRoute({
@@ -11,13 +11,13 @@ const rootRoute = new RootRoute({
 const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: Index,
+  component: InitialPage,
 })
 
 const prodRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/swapi-assignment',
-  component: Index,
+  component: InitialPage,
 })
 
 const peopleRoute = new Route({
