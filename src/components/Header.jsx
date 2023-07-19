@@ -9,7 +9,12 @@ const pages = [
   {title: 'Home', url: '/'},
   {title: 'People', url: '/api/people'},
   {title: 'Starships', url: '/api/starships'},
+  {title: 'films', url: '/api/films'},
+  {title: 'planets', url: '/api/planets'},
+  {title: 'species', url: '/api/species'},
+  {title: 'vehicles', url: '/api/vehicles'},
 ];
+
 export default function Header(){
 
 

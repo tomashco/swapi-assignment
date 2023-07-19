@@ -7,7 +7,8 @@ export default function useAxios(endpoint){
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState('')
   
-    useEffect(()=> {
+  useEffect(() => {
+      setIsLoading(true)
       async function getData(){
         await api.get(endpoint)
           .then(res => {
@@ -20,7 +21,7 @@ export default function useAxios(endpoint){
           })
       }
       getData()
-    },[])
+    },[endpoint])
 
     return [data, isLoading, error]
 }

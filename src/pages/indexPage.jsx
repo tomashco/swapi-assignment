@@ -1,8 +1,6 @@
+import Title from "../components/Title";
 
 export default function Index() {
-  return (
-    <div>
-      <h3>Welcome to the Star Wars API inspector</h3>
-    </div>
+return (< Title title={"The Star Wars API Inspector"} />
   )
 }

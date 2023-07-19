@@ -6,7 +6,9 @@ export default function Layout() {
     <main className="w-screen h-screen">
       <Header />
       <hr />
+      <div className="p-6">
       <Outlet />
+      </div>
     </main>
   )
 }
