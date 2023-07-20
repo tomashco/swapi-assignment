@@ -19,9 +19,9 @@ if you want to see a live example, just head to: [https://tomashco.github.io/swa
 - Menu navigation to return to the paginated list or navigate towards other pages.
 
 ## technical details
-- React.js SPA scaffolded with (Vite)[https://vitejs.dev/];
+- React.js SPA scaffolded with [Vite](https://vitejs.dev/);
 - creation of a custom hook useAxios to integrate simple state management for axios calls;
-- addition of a router system that allows to move between pages, using (tanstack Router)[https://tanstack.com/router/v1];
-- use of (Tailwind CSS)[https://tailwindcss.com/] for rapidly build the template, then used (MUI)[https://mui.com/material-ui/] components for more complex parts (i.e. tables, menu);
+- addition of a router system that allows to move between pages, using [tanstack Router](https://tanstack.com/router/v1);
+- use of [Tailwind CSS](https://tailwindcss.com/) for rapidly build the template, then used [MUI](https://mui.com/material-ui/) components for more complex parts (i.e. tables, menu);
 - Implemented search functionality to allow users to search for specific items inside the specified category;
 - Addition of skeleton screens to improve the user experience during API requests.
