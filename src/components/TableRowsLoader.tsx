@@ -1,5 +1,4 @@
 import { Skeleton, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import PropTypes from "prop-types"
 
 export default function TableRowsLoader ({ rowsNum = 10 }) {
   return <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -24,9 +23,4 @@ export default function TableRowsLoader ({ rowsNum = 10 }) {
   ))}
         </TableBody>
     </Table>
-}
-
-
-TableRowsLoader.propTypes = {
-  rowsNum: PropTypes.string
 }

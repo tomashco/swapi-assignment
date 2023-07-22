@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import api from "."
+import { SwapiList } from "../utilities/interfaces/Api"
 
-export default function useAxios(endpoint){
+export default function useAxios(endpoint: string){
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState<SwapiList>()
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState('')
   

@@ -3,19 +3,19 @@ import useAxios from '../api/useAxios';
 import {getUrl} from '../api'
 import { Button, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import TableRowsLoader from './TableRowsLoader'; 
-import { useEffect, useState } from 'react';
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 import { limit } from '../utilities/utils';
-import PropTypes from 'prop-types'
+import { ApiComponent, SwapiList } from '../utilities/interfaces/Api';
 
-export default function GenericList ({baseUrl}) {
+export default function GenericList ({apiUrl}: ApiComponent) {
   const [page, setPage] = useState(1)
-  const [url, setUrl] = useState(baseUrl)
-  const [rawData, isLoading, error] = useAxios(url)
+  const [url, setUrl] = useState(apiUrl)
+  const [rawData, isLoading, error] = useAxios(url) as [SwapiList, boolean, string]
   const data = rawData?.results
 
   useEffect(() => {
-    setUrl(baseUrl)
-  },[baseUrl])
+    setUrl(apiUrl)
+  },[apiUrl])
 
   if (isLoading) return <TableRowsLoader />
   if(error) return <div>{error}</div>
@@ -25,9 +25,8 @@ export default function GenericList ({baseUrl}) {
   
   const count=Math.floor(rawData?.count/10)
 
-  const handleChange = (_evt, value) => {
-
-    setUrl(`${baseUrl}/?page=${value}`)
+  const handleChange = (_evt: ChangeEvent<unknown>, value: number) => {
+    setUrl(`${apiUrl}/?page=${value}`)
     setPage(value)
   }
 
@@ -38,21 +37,21 @@ export default function GenericList ({baseUrl}) {
         <TableHead>
           <TableRow>
           {Object.keys(data[0]).map(el =>
-            typeof data[0][el] === "string"
+            typeof data[0][el as keyof typeof data[0]] === "string"
             && <TableCell key={el} align="right">{el.replaceAll('_', ' ')}</TableCell>)}
           </TableRow>
         </TableHead>
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key={row.name}
+              key={Object.keys(row)[0]}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               {(Object.keys(row)).map((el, index) =>
-                  typeof row[el] === "string"
+                  typeof row[el as keyof typeof row] === "string"
                   && (index === 0 ?
-                  <TableCell key={el} align="right"><Link to={getUrl(row.url)} >{limit(row[el], 50)}</Link></TableCell>
-                  : <TableCell key={el} align="right">{limit(row[el], 50)}</TableCell>)
+                  <TableCell key={el} align="right"><Link search={{}} params={{}} to={getUrl(row.url)} >{limit(row[el as keyof typeof row], 50)}</Link></TableCell>
+                  : <TableCell key={el} align="right">{limit(row[el as keyof typeof row], 50)}</TableCell>)
                   )}
             </TableRow>
           ))}
@@ -64,8 +63,4 @@ export default function GenericList ({baseUrl}) {
       <Pagination page={page} count={count} onChange={handleChange} />
     </Stack>
   </>
-}
-
-GenericList.propTypes = {
-  baseUrl: PropTypes.string
 }

@@ -1,15 +1,14 @@
 import { Typography } from "@mui/material";
-import PropTypes from 'prop-types';
 
-export default function Title({title}) {
+interface TitleProps {
+  title: string
+}
+
+export default function Title({title}: TitleProps) {
   return <div className="flex justify-center">
 
     <Typography variant="h3">
        {title}
       </Typography>
     </div>
-}
-
-Title.propTypes = {
-  title: PropTypes.string
 }

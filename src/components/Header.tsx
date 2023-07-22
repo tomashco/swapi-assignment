@@ -18,9 +18,9 @@ const pages = [
 export default function Header(){
 
 
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
 
@@ -81,7 +81,7 @@ return <AppBar position="static">
         >
           {pages.map((page) => (
             <MenuItem key={page.url} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center"><Link to={page.url}>{page.title}</Link></Typography>
+              <Typography textAlign="center"><Link search={{}} params={{}} to={page.url}>{page.title}</Link></Typography>
             </MenuItem>
           ))}
         </Menu>
@@ -112,7 +112,7 @@ return <AppBar position="static">
             onClick={handleCloseNavMenu}
             sx={{ my: 2, color: 'white', display: 'block' }}
           >
-            <Link className="text-white" to={page.url}>{page.title}</Link>
+            <Link search={{}} params={{}} className="text-white" to={page.url}>{page.title}</Link>
           </Button>
         ))}
       </Box>

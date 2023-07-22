@@ -94,11 +94,6 @@ export const vehicleRoute = new Route({
   component: () => <SingleViewPage pageTitle='Vehicle page'/>,
 })
 
-
-
-
-  
-
 const routeTree = rootRoute.addChildren([
   indexRoute, 
   prodRoute, 

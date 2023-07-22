@@ -2,6 +2,7 @@ import { Outlet } from "@tanstack/router";
 import Header from "../components/Header";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import React from "react";
 
 const lightTheme = createTheme({
   palette: {
