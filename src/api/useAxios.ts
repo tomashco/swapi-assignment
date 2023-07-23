@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import api from "."
+import swApi from "."
 import { SwapiList } from "../utilities/interfaces/Api"
 
 export default function useAxios(endpoint: string){
@@ -11,7 +11,7 @@ export default function useAxios(endpoint: string){
   useEffect(() => {
       setIsLoading(true)
       async function getData(){
-        await api.get(endpoint)
+        await swApi().get(endpoint)
           .then(res => {
             const data = res.data;
             setData(data);

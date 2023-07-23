@@ -1,12 +1,18 @@
-import useAxios from '../api/useAxios';
-import { ApiComponent, FilmProps, PersonProps, PlanetProps, SpecieProps, StarshipProps, VehicleProps } from '../utilities/interfaces/Api';
+import { useQuery } from 'react-query';
+import { swapiEntityFetch } from '../api';
+import { ApiComponent, } from '../utilities/interfaces/Api';
+import axios from 'axios';
 
 export default function GenericCard ({apiUrl}: ApiComponent) {
-  const [data, isLoading, error] = useAxios(apiUrl) as [VehicleProps | SpecieProps | PlanetProps | FilmProps | StarshipProps | PersonProps, boolean, string]
+  const { isLoading, error, data, isFetching } = useQuery(apiUrl, () => swapiEntityFetch(apiUrl));
 
   if(isLoading) return <div>is loading...</div>
-  if(error) return <div>{error}</div>
+  if (axios.isAxiosError(error)) return <div>{error.message}</div>
+    
   return <>
-    {Object.keys(data).map(el => typeof data[el as keyof typeof data] === "string" && <p key={el}><span className='font-bold'>{el.replaceAll('_', ' ')}: </span>{data[el as keyof typeof data]}</p>)}
+    {data && Object.keys(data).map(el =>
+      typeof data[el as keyof typeof data] === "string" &&
+      <p key={el}>
+        <span className='font-bold'>{el.replaceAll('_', ' ')}: </span>{data[el as keyof typeof data]}</p>)}
   </>
 }
