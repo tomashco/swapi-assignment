@@ -1,18 +1,17 @@
 import { Link } from '@tanstack/router';
-import useAxios from '../api/useAxios';
 import {getUrl, swapiListFetch} from '../api'
 import { Button, Pagination, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import TableRowsLoader from './TableRowsLoader'; 
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { limit } from '../utilities/utils';
-import { ApiComponent, SwapiList } from '../utilities/interfaces/Api';
+import { ApiComponent } from '../utilities/interfaces/Api';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
 export default function GenericList ({apiUrl}: ApiComponent) {
   const [page, setPage] = useState(1)
   const [url, setUrl] = useState(apiUrl)
-  const { isLoading, error, data: rawData, isFetching } = useQuery(url, () => swapiListFetch(url));
+  const { isLoading, error, data: rawData } = useQuery(url, () => swapiListFetch(url));
 
   const data = rawData?.results
 
@@ -45,7 +44,7 @@ export default function GenericList ({apiUrl}: ApiComponent) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((row) => (
+          {data && data.map((row) => (
             <TableRow
               key={Object.keys(row)[0]}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

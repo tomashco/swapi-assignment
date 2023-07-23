@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { swapiEntityFetch } from '../api';
-import { ApiComponent, } from '../utilities/interfaces/Api';
+import { ApiComponent } from '../utilities/interfaces/Api';
 import axios from 'axios';
 
 export default function GenericCard ({apiUrl}: ApiComponent) {
-  const { isLoading, error, data, isFetching } = useQuery(apiUrl, () => swapiEntityFetch(apiUrl));
+  const { isLoading, error, data } = useQuery(apiUrl, () => swapiEntityFetch(apiUrl));
 
   if(isLoading) return <div>is loading...</div>
   if (axios.isAxiosError(error)) return <div>{error.message}</div>

@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { FilmProps, PersonProps, PlanetProps, SpecieProps, StarshipProps, SwapiList, VehicleProps } from '../utilities/interfaces/Api';
+import { SwapiEntitySchema, SwapiListSchema } from '../utilities/schema';
 
 export default function swApi() {
   return axios.create({
   baseURL: `https://swapi.dev/`
 })}
 
-export const swapiListFetch = (url: string): Promise<SwapiList> =>
-  swApi().get(url).then((response) => response.data)
+export const swapiListFetch = (url: string) =>
+  swApi().get(url).then((response) => SwapiListSchema.parse(response.data))
 
-export const swapiEntityFetch = (url : string): Promise<PersonProps | StarshipProps | FilmProps | PlanetProps | SpecieProps | VehicleProps> =>
-  swApi().get(url).then((response) => response.data)
+export const swapiEntityFetch = (url : string) =>
+  swApi().get(url).then((response) => SwapiEntitySchema.parse(response.data))
 
 
 export function getUrl(url: string){

@@ -1,7 +1,6 @@
-import React from "react"
 import GenericCard from "../components/GenericCard"
 import Title from "../components/Title"
-import { PageProps } from "../utilities/interfaces/Page"
+import { PageProps } from "../utilities/interfaces/common"
 
 export default function SingleViewPage({pageTitle}: PageProps) {
 

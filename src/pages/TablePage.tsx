@@ -3,7 +3,7 @@ import GenericList from '../components/GenericList'
 import Title from '../components/Title'
 import { TextField } from '@mui/material'
 import React from 'react'
-import { PageProps } from '../utilities/interfaces/Page'
+import { PageProps } from '../utilities/interfaces/common'
 
 function TablePage({ pageTitle }: PageProps) {
   const baseUrl = window.location.pathname
